@@ -14,7 +14,6 @@ def process_ocr(
     # Create client
     opts = ClientOptions(api_endpoint=f"{location}-documentai.googleapis.com")
     client = documentai.DocumentProcessorServiceClient(client_options=opts)
-
     name = client.processor_path(project_id, location, processor_id)
 
     # Read input file
