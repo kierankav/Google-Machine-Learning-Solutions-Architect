@@ -1,4 +1,5 @@
 from google.cloud import documentai
+from google.api_core.client_options import ClientOptions
 
 # Replace the following values and uncomment those lines
 # project_id = 'YOUR_PROJECT_ID'
@@ -11,7 +12,9 @@ def process_ocr(
     project_id: str, location: str, processor_id: str, file_path: str, mime_type: str
 ):
     # Create client
-    client = documentai.DocumentProcessorServiceClient()
+    opts = ClientOptions(api_endpoint=f"{location}-documentai.googleapis.com")
+    client = documentai.DocumentProcessorServiceClient(client_options=opts)
+
     name = client.processor_path(project_id, location, processor_id)
 
     # Read input file
